@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-4xl font-bold text-gray-200 mb-4;
+}
+
+h2 {
+  @apply text-3xl font-semibold text-gray-200 mb-3;
+}
+
+h3 {
+  @apply text-2xl font-semibold text-gray-200 mb-2;
+}
+
+h4 {
+  @apply text-xl font-semibold text-gray-200 mb-1;
+}
+
+p {
+  @apply text-base text-gray-100 mb-3;
+}
+
+a {
+  @apply text-blue-100 no-underline transition-colors duration-200;
+}
+
+a:hover {
+  @apply text-blue-700;
+}
+
+body {
+  @apply bg-white;
+}
+
+.card {
+  @apply border-gray-300 rounded-xl border-2 p-6 m-6 bg-gray-900 flex items-center justify-center flex-col
+}
+
+.blue-button {
+  @apply bg-agBlue hover:bg-agBlue/30 text-white font-bold py-2 px-4 rounded m-4;
+}
+
+.red-button {
+  @apply bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded m-4;
+}

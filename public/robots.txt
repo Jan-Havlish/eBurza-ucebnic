@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /register
+Disallow: /login
+Disallow: /logout
+Disallow: /user
+Disallow: /addbook
