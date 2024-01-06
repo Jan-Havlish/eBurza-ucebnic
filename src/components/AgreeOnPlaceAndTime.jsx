@@ -37,7 +37,7 @@ const AgreeOnPlaceAndTime = (props) => {
     await updateRecord("books", book.BookID, {
       ...book,
       waitingForResponseFrom: "owner",
-      handover: { ...book.handover, place, time },
+      handover: { ...book.handover, place: place ? place : book.handover.place, time: time ? time : book.handover.time },
     });
     console.log("updated");
   };
@@ -101,9 +101,9 @@ const AgreeOnPlaceAndTime = (props) => {
         {!book.handover.timeAgree && " čas"}
       </h2>
       {book.takerEmail === user.email && (
-        <div>
-          <ChoosingBarFromArray options={vydejniMista} setResult={setPlace} />
-          <ChoosingBarFromArray options={vydejniCasy} setResult={setTime} />
+        <div className={book.waitingForResponseFrom === "owner" ? "opacity-50" : "opacity-100"}>
+          {!book.handover.placeAgree && <ChoosingBarFromArray options={vydejniMista} setResult={setPlace} />}
+          {!book.handover.timeAgree && <ChoosingBarFromArray options={vydejniCasy} setResult={setTime} />}
           <button onClick={handleSend} className="">
             Navrhnout
           </button>
