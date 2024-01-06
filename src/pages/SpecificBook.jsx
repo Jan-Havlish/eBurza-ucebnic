@@ -34,7 +34,7 @@ const SpecificBook = () => {
           {book?.bookDescription}
         </p>
       </div>
-      <div className="card">
+      <div className="card min-h-screen">
         {(user && book) ? <ComunitationWindow book={book} /> : <NeedToLogin />}
       </div>
     </>
