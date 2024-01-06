@@ -41,7 +41,7 @@ const SchoolBooks = () => {
         />
       </div>
 
-      <div className="grid xl:grid-cols-3">
+      <div className="cards">
         {books.map((book) => (
           <OneBook
             key={book.id}

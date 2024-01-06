@@ -23,25 +23,31 @@ const MyBooksAndInterests = (props) => {
       <h2 className="text-xl m-6 border-b border-agBlue text-agBlue">
         Kde jsem zájemce
       </h2>
-      {myInterests.map((interest) => (
-        <OneBook
-          key={interest.id}
-          title={interest.bookTitle}
-          owner={interest.ownerName}
-          image={interest.bookImg}
-          {...interest}
-        />
-      ))}
-      <h2 className="text-xl m-6 border-b border-agBlue text-agBlue">Moje knihy</h2>
-      {myBooks.map((book) => (
-        <OneBook
-          key={book.id}
-          title={book.bookTitle}
-          owner={book.ownerName}
-          image={book.bookImg}
-          {...book}
-        />
-      ))}
+      <div className="cards">
+        {myInterests.map((interest) => (
+          <OneBook
+            key={interest.id}
+            title={interest.bookTitle}
+            owner={interest.ownerName}
+            image={interest.bookImg}
+            {...interest}
+          />
+        ))}{" "}
+      </div>
+      <h2 className="text-xl m-6 border-b border-agBlue text-agBlue">
+        Moje knihy
+      </h2>
+      <div className="cards">
+        {myBooks.map((book) => (
+          <OneBook
+            key={book.id}
+            title={book.bookTitle}
+            owner={book.ownerName}
+            image={book.bookImg}
+            {...book}
+          />
+        ))}{" "}
+      </div>
     </div>
   );
 };

@@ -38,6 +38,9 @@ body {
   @apply border-gray-300 rounded-xl border-2 p-6 m-6 bg-gray-900 flex items-center justify-center flex-col
 }
 
+.cards {
+  @apply grid xl:grid-cols-3
+}
 .blue-button {
   @apply bg-agBlue hover:bg-agBlue/30 text-white font-bold py-2 px-4 rounded m-4;
 }

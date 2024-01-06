@@ -1,0 +1,17 @@
+{
+    "name": "Digitální burza učebnic",
+    "short_name": "eBurza učebnic",
+    "description": "Aplikace pro spojování prodejců a zájemců o koupi učebnic.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#001839",
+    "icons": [
+      {
+        "src": "/vite.svg",
+        "sizes": "192x192",
+        "type": "image/svg+xml"
+      }
+    ]
+  }
+  
