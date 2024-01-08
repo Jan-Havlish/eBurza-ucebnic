@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import ChangePassword from "../components/ChangePassword";
 import { verifyUserEmail } from "../services/auth/registerUser";
 import NeedToLogin from "../components/NeedToLogin";
+import {
+  downloadMyActivity,
+  notMyNames,
+} from "../services/db/downloadMyActivity";
+import ButtonDownloadJSON from "../components/ButtonDownloadJSON";
 
 const UserPage = () => {
   const user = useUser();
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const [myActivity, setMyActivity] = useState({});
+  const [showMyActivity, setShowMyActivity] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await downloadMyActivity("agkmburzaucebnic@gmail.com");
+      const clearResult = notMyNames(result);
+      setMyActivity(clearResult);
+    };
+    fetchData();
+  }, [showMyActivity]);
 
   return (
     <div className="card">
@@ -16,7 +32,9 @@ const UserPage = () => {
       ) : (
         <div>
           <button className="red-button mr-12">
-            <Link to="/logout" className="text-white no-underline">Odhlásit se</Link>
+            <Link to="/logout" className="text-white no-underline">
+              Odhlásit se
+            </Link>
           </button>
           <button
             className="blue-button"
@@ -35,14 +53,22 @@ const UserPage = () => {
           )}
 
           <Link to="/addbook">
-            <button className="red-button">
-              Přidat učebnici
-            </button>
+            <button className="red-button">Přidat učebnici</button>
           </Link>
+          <button className="blue-button" onClick={() => setShowMyActivity(!showMyActivity)}>
+            Stáhnout moji aktivitu
+          </button>
+
           {showChangePassword && <ChangePassword />}
+
+          {showMyActivity && (
+            <div className="border-gray-300 rounded-xl border-2 p-12 mt-12">
+              <ButtonDownloadJSON inputObj={myActivity} />
+            </div>
+          )}
         </div>
       )}
-    </ div>
+    </div>
   );
 };
 

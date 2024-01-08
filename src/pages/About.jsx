@@ -1,5 +1,3 @@
-import signInWithGoogle from "../functions/singInWithGoogle";
-
 const About = () => {
   return (
     <div className="card">
