@@ -53,7 +53,7 @@ const UploadBook = () => {
       taker: false,
       takerEmail: "",
       interestLost: false,
-      endOfSale: false,
+      stillOnSale: true,
       waitingForResponseFrom: "taker",
       handover: {
         place: "",

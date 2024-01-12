@@ -21,7 +21,7 @@ const SchoolBooks = () => {
 
       const books = await useQueryBookRecords("bookCategory", [
         choosedCategory,
-      ]);
+      ], true);
 
       console.log(books, "books");
       setBooks(books);
