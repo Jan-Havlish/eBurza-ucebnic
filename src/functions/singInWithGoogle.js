@@ -1,7 +1,7 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, provider } from "../firebase/config"
 
-const signInWithGoogleFunction = () => {
+const signInWithGoogleFunction = (setNotification, setNotificationType) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -23,6 +23,8 @@ const signInWithGoogleFunction = () => {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
       console.log(errorCode, errorMessage, email, credential);
+      setNotification("Chyba při přihlašování pomocí Google, " + errorMessage);
+      setNotificationType("error");
     });
 };
 

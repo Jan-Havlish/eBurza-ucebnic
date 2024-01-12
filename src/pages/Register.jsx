@@ -1,16 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { registerUser } from "../services/auth/registerUser";
+import { useNotification } from "../contexts/NotificationContext";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const { setNotification, setNotificationType } = useNotification();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password, name);
-    await registerUser(email, password, name);
+    await registerUser(email, password, name, setNotification, setNotificationType);
   }
 
   return (

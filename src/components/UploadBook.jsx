@@ -6,9 +6,11 @@ import { useUser } from "../contexts/UserContext";
 import NeedToLogin from "./NeedToLogin";
 import writeRecord from "../services/db/writeRecord";
 import getCurrentDateTime from "../functions/getCurrentDateTime"
+import { useNotification } from "../contexts/NotificationContext";
 
 const UploadBook = () => {
   const user = useUser();
+  const { setNotification, setNotificationType } = useNotification();
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState("");
@@ -31,7 +33,7 @@ const UploadBook = () => {
     event.preventDefault();
     const file = selectedFile;
     const image = await resizeImage(file, 300, 300);
-    const pictureBook = await uploadPictureToStorage(image);
+    const pictureBook = await uploadPictureToStorage(image, setNotification, setNotificationType);
     setPictureOfBook(pictureBook);
   };
 
@@ -66,7 +68,7 @@ const UploadBook = () => {
 
     console.log(book);
     console.log("uploading");
-    writeRecord("books", book);
+    writeRecord("books", book, setNotification, setNotificationType);
     console.log("uploaded");
   }, [pictureOfBook]);
   return (

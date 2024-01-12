@@ -14,7 +14,13 @@ const actionCodeSettings = {
   handleCodeInApp: true,
 };
 
-export const registerUser = async (email, password, displayName) => {
+export const registerUser = async (
+  email,
+  password,
+  displayName,
+  setNotification,
+  setNotificationType
+) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -23,10 +29,16 @@ export const registerUser = async (email, password, displayName) => {
       })
         .then(() => {
           console.log("User profile updated successfully");
+          setNotification(
+            "Registrace proběhla v pořádku, nyní si můžete dobrovolně ověřit e-mail v nastavení účtu"
+          );
+          setNotificationType("success");
           // ...
         })
         .catch((error) => {
           console.log("Error updating user profile:", error);
+          setNotification("Chyba při registrace, " + error);
+          setNotificationType("error");
           // ...
         });
       // ...
@@ -35,6 +47,8 @@ export const registerUser = async (email, password, displayName) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
+      setNotification("Chyba při registrace, " + error);
+      setNotificationType("error");
       // ...
     });
 };
@@ -48,6 +62,8 @@ export const verifyUserEmail = (user) => {
     })
     .catch((error) => {
       console.log(error);
+      setNotification("Chyba při ověření e-mailu, " + error);
+      setNotificationType("error");
     });
 };
 

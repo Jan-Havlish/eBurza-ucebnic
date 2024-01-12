@@ -5,6 +5,7 @@ import { auth } from "../firebase/config";
 import { useUser } from "../contexts/UserContext";
 import { resetPassword } from "../services/auth/registerUser";
 import { FcGoogle } from "react-icons/fc";
+import { useNotification } from "../contexts/NotificationContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,8 @@ const Login = () => {
   const user = useUser();
 
   const navigate = useNavigate();
+
+  const { setNotification, setNotificationType } = useNotification();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -36,11 +39,13 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        setNotification("Chyba při přihlašování, " + errorMessage);
+        setNotificationType("error");
       });
   };
   return (
     <div>
-      <form className="card">
+      <form className="card login">
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7">Přihlášení</h2>
@@ -63,7 +68,6 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
           />
         </div>
 
@@ -77,7 +81,6 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="password"
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
             />
           </div>
         </div>
