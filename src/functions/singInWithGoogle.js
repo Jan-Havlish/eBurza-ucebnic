@@ -12,6 +12,8 @@ const signInWithGoogleFunction = (setNotification, setNotificationType) => {
       // IdP data available using getAdditionalUserInfo(result)
       // ...
       console.log(credential, token, user);
+      setNotification("Úspěšně jste se přihlásili");
+      setNotificationType("success");
     })
     .catch((error) => {
       // Handle Errors here.

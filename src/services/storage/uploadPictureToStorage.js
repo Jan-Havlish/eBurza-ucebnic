@@ -27,6 +27,8 @@ const uploadPictureToStorage = async (file, setNotification, setNotificationType
           .then((downloadURL) => {
             console.log("File available at", downloadURL);
             resolve(downloadURL);
+            setNotification("Forografie byla úspěšně nahrána");
+            setNotificationType("success");
           })
           .catch((error) => {
             console.log(error);

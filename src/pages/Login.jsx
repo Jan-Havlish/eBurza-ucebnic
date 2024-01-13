@@ -34,6 +34,8 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         // ...
+        setNotification("Úspěšně jste se přihlásili");
+        setNotificationType("success");
       })
       .catch((error) => {
         const errorCode = error.code;

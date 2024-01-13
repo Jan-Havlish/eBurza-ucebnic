@@ -6,6 +6,8 @@ const writeRecord = async (collectionName, data, setNotification, setNotificatio
     await setDoc(doc(colRef), data)
     .then(() => {
         console.log("Document successfully written!");
+        setNotification("Dokument byl uložen");
+        setNotificationType("success");
     }).catch((error) => {
         console.error("Error writing document: ", error);
         setNotification("Chyba při uložení dokumentu, " + error);

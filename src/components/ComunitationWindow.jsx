@@ -8,6 +8,7 @@ import AgreeOnPrice from "./AgreeOnPrice";
 import { useUser } from "../contexts/UserContext";
 import updateRecord from "../services/db/updateRecord";
 import AgreeOnPlaceAndTime from "./AgreeOnPlaceAndTime";
+import { useNotification } from "../contexts/NotificationContext";
 
 const MessagesWindow = (props) => {
   const { book } = props;
@@ -22,6 +23,8 @@ const MessagesWindow = (props) => {
   } = book;
   const user = useUser();
   const [userEmail, setUserEmail] = useState("");
+
+  const { setNotification, setNotificationType } = useNotification();
 
   const handleLostInterest = async () => {
     await updateRecord("books", book.BookID, {
@@ -40,7 +43,7 @@ const MessagesWindow = (props) => {
         time: "",
         timeAgree: null,
       },
-    });
+    }, setNotification, setNotificationType);
     console.log("updated");
   };
   useEffect(() => {
@@ -133,7 +136,7 @@ const MessagesWindow = (props) => {
                 taker: user.displayName,
                 shoppingState: 1,
                 interestLost: false,
-              })
+              }, setNotification, setNotificationType)
             }
           >
             Máte zájem o knihu? A chcete se domluvit s prodejcem?

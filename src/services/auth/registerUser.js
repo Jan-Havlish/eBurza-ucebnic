@@ -59,6 +59,8 @@ export const verifyUserEmail = (user) => {
       // Email verification sent!
       // ...
       console.log("Email verification sent!");
+      setNotification("E-mail oveřen v pořádku");
+      setNotificationType("success");
     })
     .catch((error) => {
       console.log(error);
@@ -73,11 +75,15 @@ export const resetPassword = async (email) => {
       // Password reset email sent!
       // ..
       console.log("Password reset email sent!");
+      setNotification("E-mail k resetování hesla byl odeslán");
+      setNotificationType("info");
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
       console.log(errorCode, errorMessage);
+      setNotification("Chyba při resetování hesla, " + error);
+      setNotificationType("error");
     });
 };

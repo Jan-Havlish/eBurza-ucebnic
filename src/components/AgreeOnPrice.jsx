@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import updateRecord from "../services/db/updateRecord";
+import { useNotification } from "../contexts/NotificationContext";
 
 const AgreeOnPrice = (props) => {
   const { priceRangeFrom, priceRangeTo } = props;
   const [suggestedPrice, setSuggestedPrice] = useState(
     (parseInt(priceRangeFrom) + parseInt(priceRangeTo)) / 2
   );
+
+  const { setNotification, setNotificationType } = useNotification();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,7 +23,7 @@ const AgreeOnPrice = (props) => {
       ...props.book,
       suggestedPrice,
       waitingForResponseFrom: "owner",
-    });
+    }, setNotification, setNotificationType);
     console.log("updated");
   };
 
@@ -37,7 +40,7 @@ const AgreeOnPrice = (props) => {
       waitingForResponseFrom: "taker",
       priceAgree: option,
       shoppingState: option ? 2 : 1,
-    });
+    }, setNotification, setNotificationType);
     console.log("updated");
   };
 

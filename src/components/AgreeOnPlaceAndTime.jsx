@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import updateRecord from "../services/db/updateRecord";
 import { vydejniMista, vydejniCasy } from "../data/vydejniMistaACasy";
 import ChoosingBarFromArray from "./ChoosingBarFromArray";
+import { useNotification } from "../contexts/NotificationContext";
 
 const AgreeOnPlaceAndTime = (props) => {
   const { book, user } = props;
 
   const [place, setPlace] = useState(vydejniMista[0]);
+
+  const { setNotification, setNotificationType } = useNotification();
 
   useEffect(() => {
     setPlace(book.handover.place.name);
@@ -34,15 +37,21 @@ const AgreeOnPlaceAndTime = (props) => {
 
     console.log("handling", toLog);
 
-    await updateRecord("books", book.BookID, {
-      ...book,
-      waitingForResponseFrom: "owner",
-      handover: {
-        ...book.handover,
-        place: place ? place : book.handover.place,
-        time: time ? time : book.handover.time,
+    await updateRecord(
+      "books",
+      book.BookID,
+      {
+        ...book,
+        waitingForResponseFrom: "owner",
+        handover: {
+          ...book.handover,
+          place: place ? place : book.handover.place,
+          time: time ? time : book.handover.time,
+        },
       },
-    });
+      setNotification,
+      setNotificationType
+    );
     console.log("updated");
   };
 
@@ -79,16 +88,22 @@ const AgreeOnPlaceAndTime = (props) => {
 
     console.log(agrees); // [false, false]
 
-    await updateRecord("books", book.BookID, {
-      ...book,
-      waitingForResponseFrom: "taker",
-      handover: {
-        ...book.handover,
-        placeAgree: agrees[0],
-        timeAgree: agrees[1],
+    await updateRecord(
+      "books",
+      book.BookID,
+      {
+        ...book,
+        waitingForResponseFrom: "taker",
+        handover: {
+          ...book.handover,
+          placeAgree: agrees[0],
+          timeAgree: agrees[1],
+        },
+        shoppingState: allAgrees ? 3 : 2,
       },
-      shoppingState: allAgrees ? 3 : 2,
-    });
+      setNotification,
+      setNotificationType
+    );
     console.log("updated");
   };
   return (

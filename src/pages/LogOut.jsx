@@ -12,6 +12,8 @@ const LogOut = () => {
     const handleLogOut = () => {
       signOut(auth)
         .then(() => {
+          setNotification("Odhlášení proběhlo v pořádku");
+          setNotificationType("success");
           navigate("/");
         })
         .catch((error) => {
