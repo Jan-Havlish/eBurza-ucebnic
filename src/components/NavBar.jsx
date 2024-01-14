@@ -16,16 +16,13 @@ const NavBar = () => {
   const user = useUser();
 
   return (
-    <header className="w-screen h-12 bg-agRed pt-2">
+    <header className="w-full h-12 bg-agRed pt-2">
       <nav>
         <div className="flex items-center h-full text-sky-200 text-2xl">
-          <NavLink to="/" className="cursor-pointer hover:text-sky-300 mr-8 ml-4">
-            Domů
+          <NavLink to="/ucebnice" className={"cursor-pointer hover:text-sky-300 mr-8 ml-4" + (location.pathname === "/" ? " active" : "")}>
+            Učebnice
           </NavLink>
           <div className="hidden lg:inline-flex space-x-4">
-            <NavLink to="/ucebnice" className="cursor-pointer hover:text-sky-300">
-              Učebnice
-            </NavLink>
             <NavLink to="/o" className="cursor-pointer hover:text-sky-300">
               O burze
             </NavLink>

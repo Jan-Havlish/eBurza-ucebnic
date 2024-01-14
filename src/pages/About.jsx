@@ -5,14 +5,14 @@ const About = () => {
       <p>Tento projekt byl vytvořen pomocí React, Firebase a Google</p>
       <br />
       <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
-        molestias quo debitis soluta! Consectetur, illo mollitia accusantium,
-        optio quibusdam dolorem quam minima voluptas placeat fugit quasi,
-        blanditiis recusandae soluta numquam? Lorem, ipsum dolor sit amet
-        consectetur adipisicing elit. Alias doloremque, quasi deleniti facilis
-        hic, voluptas, iusto nulla fugiat iste rem nihil libero? Quisquam
-        voluptate maiores distinctio ex quidem pariatur a.
+        Kód projektu je dostupný na <a href="https://github.com/Jan-Havlish/eBurza-ucebnic">GitHubu</a>
       </p>
+      <br />
+      <h2>Právní náležitosti</h2>
+      <ul>
+        <li>Podmínky použití</li>
+        <li>Ochrana osobních údájů - GDPR</li>
+      </ul>
     </div>
   );
 };

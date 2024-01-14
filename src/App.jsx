@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SharedLayout from "./pages/SharedLayout";
 
-import Home from "./pages/Home";
 import About from "./pages/About";
 import UcebniceVyber from "./pages/UcebniceVyber";
 import Register from "./pages/Register";
@@ -23,7 +22,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<UcebniceVyber />} />
           <Route path="/ucebnice" element={<UcebniceVyber />} />
           <Route path="/ucebnice/:BookID" element={<SpecificBook />} />
           <Route path="/register" element={<Register />} />

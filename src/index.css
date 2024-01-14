@@ -38,6 +38,10 @@ body {
   @apply border-gray-300 rounded-xl border-2 p-6 m-6 bg-gray-900 flex items-center justify-center flex-col
 }
 
+.card li {
+  @apply list-disc text-white
+}
+
 .cards {
   @apply grid xl:grid-cols-3
 }
@@ -66,4 +70,8 @@ body {
 
 .login input {
   @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6
+}
+
+.active {
+  @apply text-agBlue bg-agRed;
 }
