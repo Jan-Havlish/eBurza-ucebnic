@@ -19,13 +19,13 @@ const Register = () => {
     <div className="card">
       <form className="">
         <div className="space-y-12">
-          <div className="border-b border-gray-300 pb-12">
+          <div className="border-b border-zinc-300 pb-12">
             <h2 className="text-base font-semibold leading-7">
               Registrace pomocí e-mailu
             </h2>
           </div>
 
-          <div className="border-b border-gray-300 pb-12">
+          <div className="border-b border-zinc-300 pb-12">
             
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -39,7 +39,7 @@ const Register = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -54,7 +54,7 @@ const Register = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -69,7 +69,7 @@ const Register = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="password"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>

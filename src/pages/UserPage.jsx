@@ -67,7 +67,7 @@ const UserPage = () => {
             {showChangePassword && <ChangePassword />}
 
             {showMyActivity && (
-              <div className="border-gray-300 rounded-xl border-2 p-12 mt-12">
+              <div className="border-zinc-300 rounded-xl border-2 p-12 mt-12">
                 <ButtonDownloadJSON inputObj={myActivity} />
               </div>
             )}

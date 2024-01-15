@@ -49,11 +49,11 @@ const Login = () => {
     <div>
       <form className="card login">
         <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
+          <div className="border-b border-zinc-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7">Přihlášení</h2>
           </div>
         </div>
-        <div className="m-10 flex justify-center border-b-2 border-gray-900/10 mb-10 p-12">
+        <div className="m-10 flex justify-center border-b-2 border-zinc-900/10 mb-10 p-12">
           <Link
             to="/login/google"
             className="sm:col-span-4 flex items-center justify-center m-full"
@@ -95,7 +95,7 @@ const Login = () => {
             Přihlásit se
           </button>
         </div>
-        <div className="text-center border-t-2 border-gray-900/10 mt-2">
+        <div className="text-center border-t-2 border-zinc-900/10 mt-2">
           <p>
             {" "}
             nebo se můžete registrovat{" "}

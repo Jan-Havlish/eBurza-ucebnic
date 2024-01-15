@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-4xl font-bold text-gray-200 mb-4;
+  @apply text-4xl font-bold text-zinc-200 mb-4;
 }
 
 h2 {
-  @apply text-3xl font-semibold text-gray-200 mb-3;
+  @apply text-3xl font-semibold text-zinc-200 mb-3;
 }
 
 h3 {
-  @apply text-2xl font-semibold text-gray-200 mb-2;
+  @apply text-2xl font-semibold text-zinc-200 mb-2;
 }
 
 h4 {
-  @apply text-xl font-semibold text-gray-200 mb-1;
+  @apply text-xl font-semibold text-zinc-200 mb-1;
 }
 
 p {
-  @apply text-base text-gray-100 mb-3;
+  @apply text-base text-zinc-100 mb-3;
 }
 
 a {
@@ -35,7 +35,7 @@ body {
 }
 
 .card {
-  @apply border-gray-300 rounded-xl border-2 p-6 m-6 bg-gray-900 flex items-center justify-center flex-col
+  @apply border-zinc-300 rounded-xl border-2 p-6 m-6 bg-zinc-900 flex items-center justify-center flex-col
 }
 
 .card li {
@@ -44,6 +44,10 @@ body {
 
 .cards {
   @apply grid xl:grid-cols-3
+}
+
+.inside-card {
+  @apply m-2 border-zinc-200 rounded-xl border-2 p-2 text-white
 }
 .blue-button {
   @apply bg-agBlue hover:bg-agBlue/30 text-white font-bold py-2 px-4 rounded m-4;
@@ -69,9 +73,13 @@ body {
 }
 
 .login input {
-  @apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6
+  @apply block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6
 }
 
 .active {
   @apply text-agBlue bg-agRed;
+}
+
+.CommunicationWindow ul {
+  @apply list-none
 }

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import "./NavBar.css";
 import { MdMenu } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";

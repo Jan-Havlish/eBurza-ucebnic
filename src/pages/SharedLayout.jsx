@@ -11,7 +11,7 @@ const SharedLayout = () => {
     <div className="flex flex-col items-center">
       <Notification notificationType={notificationType} value={notification} />
       <Navbar />
-      <div className="w-5/6 mt-12 mb-12">
+      <div className="w-21/12 md:w-11/12 xl:w-5/6 mt-12 mb-12">
         <Outlet />
       </div>
       <Footer />

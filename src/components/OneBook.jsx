@@ -24,7 +24,7 @@ const OneBook = (props) => {
     {console.log(email)}
     
     {((props.shoppingState !== 3) | (props.takerEmail === email) | (props.ownerEmail === email)) ? (
-      <div className="border-gray-300 rounded-xl border-2 p-6 m-6 bg-gray-900 flex items-center justify-center flex-col h-200">
+      <div className="border-zinc-300 rounded-xl border-2 p-6 m-6 bg-zinc-900 flex items-center justify-center flex-col h-200">
       <h1>{props.title}</h1>
       <h2>{!props.taker ? "Zatím bez zájemce" : "Zájemce, ještě neujednáno"} </h2>
       {console.log(taker)}

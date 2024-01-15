@@ -31,9 +31,9 @@ const ChangePassword = () => {
 
 
   return (
-    <div className="border-gray-300 rounded-xl border-2 p-12 mt-12">
+    <div className="border-zinc-300 rounded-xl border-2 p-12 mt-12">
       <form>
-        <h2 className="text-base font-semibold leading-7 text-gray-900">
+        <h2 className="text-base font-semibold leading-7 text-zinc-900">
           Změnit heslo
         </h2>{" "}
         <br />
@@ -42,7 +42,7 @@ const ChangePassword = () => {
           placeholder="Staré heslo"
           onChange={(e) => setOldPassword(e.target.value)}
           value={oldPassword}
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />
         <br />
         <input
@@ -50,7 +50,7 @@ const ChangePassword = () => {
           placeholder="Nové heslo"
           onChange={(e) => setNewPassword(e.target.value)}
           value={newPassword}
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />{" "}
         <br />
         <button
