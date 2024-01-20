@@ -10,12 +10,14 @@ import {
 } from "../services/db/downloadMyActivity";
 import ButtonDownloadJSON from "../components/ButtonDownloadJSON";
 import MyBooksAndInterests from "../components/MyBooksAndInterests";
+import { useNotification } from "../contexts/NotificationContext";
 
 const UserPage = () => {
   const user = useUser();
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [myActivity, setMyActivity] = useState({});
   const [showMyActivity, setShowMyActivity] = useState(false);
+  const { setNotification, setNotificationType } = useNotification();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +48,7 @@ const UserPage = () => {
             </button>
             {user.emailVerified ? null : (
               <button
-                onClick={() => verifyUserEmail(user)}
+                onClick={() => verifyUserEmail(user, setNotification, setNotificationType)}
                 className="blue-button"
               >
                 {" "}

@@ -9,6 +9,7 @@ import { useUser } from "../contexts/UserContext";
 import updateRecord from "../services/db/updateRecord";
 import AgreeOnPlaceAndTime from "./AgreeOnPlaceAndTime";
 import { useNotification } from "../contexts/NotificationContext";
+import Finish from "./Finish";
 
 const CommunicationWindow = (props) => {
   const { book } = props;
@@ -69,7 +70,7 @@ const CommunicationWindow = (props) => {
         <div className="mt-6">
           <h3>Komunikace</h3>
           <br />
-          {book.shoppingState !== 3 && (
+          {book.shoppingState <= 3 && (
             <button
               className="bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded"
               onClick={handleLostInterest}
@@ -117,7 +118,10 @@ const CommunicationWindow = (props) => {
               }
             >
               <PiNumberCircleThree size={35} />{" "}
-              <h3 className="ml-4 mt-2 mb-2">Dokončit</h3>
+              <div className="ml-4 mt-2 mb-2">
+                <h3>Dokončit</h3>
+                {shoppingState === 3 && <Finish amITaker={takerEmail === userEmail} book={book} />}
+              </div>
             </div>
           </ul>
         </div>

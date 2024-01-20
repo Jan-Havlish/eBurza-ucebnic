@@ -53,13 +53,13 @@ export const registerUser = async (
     });
 };
 
-export const verifyUserEmail = (user) => {
+export const verifyUserEmail = (user, setNotification, setNotificationType) => {
   sendEmailVerification(user, actionCodeSettings)
     .then(() => {
       // Email verification sent!
       // ...
       console.log("Email verification sent!");
-      setNotification("E-mail oveřen v pořádku");
+      setNotification("Žádost o ověření e-mailu byla odeslána");
       setNotificationType("success");
     })
     .catch((error) => {
