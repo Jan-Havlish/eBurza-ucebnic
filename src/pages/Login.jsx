@@ -47,7 +47,7 @@ const Login = () => {
   };
   return (
     <div>
-      <form className="card login">
+      <form className="card login" id="login" onSubmit={onSubmit}>
         <div className="space-y-12">
           <div className="border-b border-zinc-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7">Přihlášení</h2>
@@ -62,6 +62,9 @@ const Login = () => {
           </Link>
         </div>
         <div className="sm:col-span-4 mt-2">
+          <label htmlFor="email" className="sr-only">
+            E-mailová adresa
+          </label>
           <input
             id="email"
             name="email"
@@ -75,6 +78,9 @@ const Login = () => {
 
         <div className="sm:col-span-4">
           <div className="mt-2">
+            <label htmlFor="password" className="sr-only">
+              Heslo
+            </label>
             <input
               id="password"
               name="password"
@@ -82,14 +88,16 @@ const Login = () => {
               placeholder="Zadejte heslo"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete="password"
+              autocomplete="current-password"
             />
           </div>
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-x-6">
           <button
-            onClick={onSubmit}
+            name="loginButton"
+            id="loginButton"
+            type="submit"
             className="rounded-md bg-agRed px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-agRed/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-agRed"
           >
             Přihlásit se

@@ -32,12 +32,13 @@ const ChangePassword = () => {
 
   return (
     <div className="border-zinc-300 rounded-xl border-2 p-12 mt-12">
-      <form>
+      <form id="changePassword" onSubmit={onSubmit}>
         <h2 className="text-base font-semibold leading-7 text-zinc-900">
           Změnit heslo
         </h2>{" "}
         <br />
         <input
+          id="oldPassword"
           type="password"
           placeholder="Staré heslo"
           onChange={(e) => setOldPassword(e.target.value)}
@@ -46,6 +47,7 @@ const ChangePassword = () => {
         />
         <br />
         <input
+          id="newPassword"
           type="password"
           placeholder="Nové heslo"
           onChange={(e) => setNewPassword(e.target.value)}
@@ -53,9 +55,8 @@ const ChangePassword = () => {
           className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         />{" "}
         <br />
-        <button
+        <button type="submit"
           className="bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded"
-          onClick={onSubmit}
         >
           Změnit heslo
         </button>

@@ -81,8 +81,10 @@ const AgreeOnPrice = (props) => {
           }
         >
           <h2>Navrhujete cenu: {suggestedPrice} Kč</h2>
-          <form>
+          <form id="range" onSubmit={handleSubmit}>
+            <label htmlFor="rangeChooser" className="sr-only">Rozsah cen: {priceRangeFrom} - {priceRangeTo} Kč</label>
             <input
+              id="rangeChooser"
               type="range"
               min={priceRangeFrom}
               max={priceRangeTo}
@@ -90,8 +92,8 @@ const AgreeOnPrice = (props) => {
               onChange={(e) => setSuggestedPrice(e.target.value)}
             />
             <button
+            type="submit"
               className="bg-agBlue hover:bg-agBlue/60 text-white font-bold py-2 px-4 rounded"
-              onClick={handleSubmit}
             >
               Navrhnout
             </button>

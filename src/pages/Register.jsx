@@ -17,7 +17,7 @@ const Register = () => {
 
   return (
     <div className="card">
-      <form className="">
+      <form id="register" onSubmit={onSubmit} >
         <div className="space-y-12">
           <div className="border-b border-zinc-300 pb-12">
             <h2 className="text-base font-semibold leading-7">
@@ -68,7 +68,7 @@ const Register = () => {
                     placeholder="Zadejte heslo"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    autoComplete="password"
+                    autoComplete="current-password"
                     className="block w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-agRed sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -80,7 +80,7 @@ const Register = () => {
 
         <div className="mt-6 flex items-center justify-center gap-x-6">
           <button
-            onClick={onSubmit}
+            type="submit"
             className="rounded-md bg-agRed px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-agRed/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-agRed"
           >
             Přijmout podmínky používání aplikace a registrovat se.

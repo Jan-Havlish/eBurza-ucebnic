@@ -150,7 +150,12 @@ const CommunicationWindow = (props) => {
           </button>
         </div>
       )}
+
+      {userEmail !== takerEmail  && (
+        <h3>Učebnice má aktuálně zájemce.</h3>
+      )}
     </div>
+
   );
 };
 

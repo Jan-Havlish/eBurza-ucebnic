@@ -76,10 +76,10 @@ const UploadBook = () => {
       {!user ? (
         <NeedToLogin />
       ) : (
-        <div className="card">
-          <h1>UploadBook</h1>
-          <form className="ml-16">
+          <form className="card" onSubmit={handleSubmit} id="Nahrát učebnici">
+            <h1> Nahrát učebnici </h1>
             <input
+              id="titulek"
               type="text"
               placeholder="Titulek"
               value={title}
@@ -87,6 +87,7 @@ const UploadBook = () => {
             />{" "}
             <br />
             <select
+              id="kategorie"
               value={bookCategory}
               onChange={(e) => setBookCategory(e.target.value)}
             >
@@ -99,6 +100,7 @@ const UploadBook = () => {
             </select>
             <br />
             <input
+              id="popis"
               type="text"
               placeholder="Popis"
               value={description}
@@ -106,6 +108,7 @@ const UploadBook = () => {
             />{" "}
             <br />
             <input
+              id="cenaStart"
               type="number"
               placeholder="Cena od"
               value={priceRangeFrom}
@@ -113,6 +116,7 @@ const UploadBook = () => {
             />{" "}
             <br />
             <input
+              id="cenaEnd"
               type="number"
               placeholder="Cena do"
               value={priceRangeTo}
@@ -120,13 +124,13 @@ const UploadBook = () => {
             />{" "}
             <br />
             <input
+              id="fotografie"
               type="file"
               onChange={(e) => setSelectedFile(e.target.files[0])}
             />{" "}
             <br />
-            <button onClick={handleSubmit}>Upload</button>
+            <button type="submit">Nahrát</button>
           </form>
-        </div>
       )}
     </>
   );
