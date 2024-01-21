@@ -151,7 +151,7 @@ const CommunicationWindow = (props) => {
         </div>
       )}
 
-      {userEmail !== takerEmail  && (
+      {((userEmail !== takerEmail)  && (userEmail !== (ownerEmail || (takerEmail)))) && (
         <h3>Učebnice má aktuálně zájemce.</h3>
       )}
     </div>
