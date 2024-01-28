@@ -5,8 +5,13 @@ import { useNotification } from "../contexts/NotificationContext";
 const LogWithGoogle = () => {
   const { setNotification, setNotificationType } = useNotification();
   const alertAndLogin = () => {
-    alert("Přihlásit se");
-    signInWithGoogleFunction(setNotification, setNotificationType);
+    const logIn = confirm("Chcete se prihlášit / REGISTROVAT pomocí Googlu? (Nemáte-li již účet budete registrováni, zvolte zrušit, pokud jste se ještě neseznámi nebo nesouhlasíte s podmínkami používání (V O burze!))");
+    if (logIn) {
+      signInWithGoogleFunction(setNotification, setNotificationType);
+    } else {
+      setNotification("Zrušeno");
+      setNotificationType("error");
+    }
   };
   return (
     <div className="card">
