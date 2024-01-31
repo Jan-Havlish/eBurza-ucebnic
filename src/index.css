@@ -83,3 +83,7 @@ body {
 .CommunicationWindow ul {
   @apply list-none
 }
+
+br {
+  @apply block
+}
