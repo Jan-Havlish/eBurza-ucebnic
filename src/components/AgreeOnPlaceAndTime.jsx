@@ -127,10 +127,10 @@ const AgreeOnPlaceAndTime = (props) => {
           }
         >
           {!book.handover.placeAgree && (
-            <ChoosingBarFromArray options={vydejniMista} setResult={setPlace} />
+            <ChoosingBarFromArray options={vydejniMista} setResult={setPlace} label="a" />
           )}
           {!book.handover.timeAgree && (
-            <ChoosingBarFromArray options={vydejniCasy} setResult={setTime} />
+            <ChoosingBarFromArray options={vydejniCasy} setResult={setTime} label="b" />
           )}
           <button onClick={handleSend} className="">
             Navrhnout

@@ -9,7 +9,7 @@ const About = () => {
 
   useEffect(() => {
     const getMarkdown = async () => {
-      await downloadSpecificDocumentById("text", "law", setTextObj);
+      await downloadSpecificDocumentById("cloud_settings", "law", setTextObj);
     }
     getMarkdown();
   }, []);
