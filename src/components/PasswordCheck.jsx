@@ -17,6 +17,10 @@ class PasswordCheck extends React.Component {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.setState({ truePassword: docSnap.data().password });
+        const needPassword = docSnap.data().use;
+        if (!needPassword) {
+          this.setState({ authenticated: true });
+        }
       } else {
         console.log("No such document!");
       }

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 package-lock.json
+.firebaserc
+firebase.json
+.firebase
 
 src/data/rules.md
 
