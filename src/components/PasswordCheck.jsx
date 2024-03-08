@@ -1,26 +1,27 @@
 import React from "react";
 import { projectFirestore } from "../firebase/config";
 import { doc, getDoc } from "firebase/firestore";
+import PropTypes from 'prop-types'; 
 
 class PasswordCheck extends React.Component {
     constructor(props) {
       super(props);
       this.state = { password: "", authenticated: false, truePassword: "" };
     }
-  
+
     handlePasswordChange = (event) => {
       this.setState({ password: event.target.value });
     };
-    
+
     async getTruePassword() {
       const docRef = doc(projectFirestore, "cloud_settings", "enter_password");
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        this.setState({ truePassword: docSnap.data().password });
-        const needPassword = docSnap.data().use;
-        if (!needPassword) {
+        const doc = docSnap.data();
+        if (!doc.use){
           this.setState({ authenticated: true });
         }
+        this.setState({ truePassword: doc.password });
       } else {
         console.log("No such document!");
       }
@@ -31,16 +32,12 @@ class PasswordCheck extends React.Component {
     }
 
     handleLogin = () => {
-      // Zde by probíhalo ověření hesla, můžete využít například API volání k serveru
-      // Po úspěšném ověření by se nastavila authenticated na true
-      // get password from db 
-
 
       if (this.state.password === this.state.truePassword) {
         this.setState({ authenticated: true });
       }
     };
-  
+
     render() {
       if (!this.state.authenticated) {
         return (
@@ -56,5 +53,9 @@ class PasswordCheck extends React.Component {
       }
     }
   }
+
+  PasswordCheck.propTypes = {
+  children: PropTypes.node
+};
 
   export default PasswordCheck

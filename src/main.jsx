@@ -6,6 +6,8 @@ import "./index.css";
 import { UserProvider } from "./contexts/UserContext";
 import { NotificationProvider } from "./contexts/NotificationContext";
 
+import PasswordCheck from "./components/PasswordCheck.jsx";
+
 // registrace sw.js
 
 if ("serviceWorker" in navigator) {
@@ -57,5 +59,7 @@ class OfflineIndicator extends React.Component {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+    <PasswordCheck>
     <OfflineIndicator />
+    </PasswordCheck>
 );
