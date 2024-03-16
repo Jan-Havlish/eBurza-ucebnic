@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from 'prop-types'
 
 const Notification = (props) => {
     const { value, notificationType } = props
@@ -9,3 +9,8 @@ const Notification = (props) => {
 }
 
 export default Notification
+
+Notification.propTypes = {
+    value: PropTypes.string.isRequired,
+    notificationType: PropTypes.string.isRequired
+}

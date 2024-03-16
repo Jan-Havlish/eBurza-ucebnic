@@ -1,7 +1,7 @@
 import { projectFirestore } from "../../firebase/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-const useQueryBookRecords = async (parameter, inArray, stillOnSale = null) => {
+const queryBookRecords = async (parameter, inArray, stillOnSale = null) => {
   let q;
 
   if (stillOnSale === null) {
@@ -28,4 +28,4 @@ const useQueryBookRecords = async (parameter, inArray, stillOnSale = null) => {
     : [];
 };
 
-export default useQueryBookRecords;
+export default queryBookRecords;

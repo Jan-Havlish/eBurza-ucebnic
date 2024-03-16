@@ -1,11 +1,11 @@
 import OneBook from "./OneBook";
 import ChoosingBarFromArray from "./ChoosingBarFromArray";
 import ucebniceNames from "../data/ucebniceNames";
-import useQueryBookRecords from "../services/db/useQueryBookRecords";
+import queryBookRecords from "../services/db/queryBookRecords";
 import { useState, useEffect } from "react";
 
 const SchoolBooks = () => {
-  // console.log(useQueryBookRecords("bookCategory", ["matematika", "fyzika", "chemie"]));
+  // console.log(queryBookRecords("bookCategory", ["matematika", "fyzika", "chemie"]));
 
   const [choosedCategory, setChoosedCategory] = useState("Angličtina");
   const [books, setBooks] = useState([]);
@@ -19,7 +19,7 @@ const SchoolBooks = () => {
         "typeof choosedCategory"
       );
 
-      const books = await useQueryBookRecords("bookCategory", [
+      const books = await queryBookRecords("bookCategory", [
         choosedCategory,
       ], true);
 
@@ -40,18 +40,21 @@ const SchoolBooks = () => {
           label="Vyberte kategorii učebnic"
         />
       </div>
-
-      <div className="cards">
+    {books && <div className="cards">
+      {console.log(books, "books", typeof books)}
         {books.map((book) => (
+          
           <OneBook
             key={book.id}
             title={book.bookTitle}
             owner={book.ownerName}
             image={book.bookImg}
+            priceRangeFrom={book.priceRangeFrom}
+            priceRangeTo={book.priceRangeTo}
             {...book}
           />
         ))}
-      </div>
+      </div>}
     </div>
   );
 };

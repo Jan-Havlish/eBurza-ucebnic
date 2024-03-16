@@ -1,14 +1,13 @@
-import React, { useState } from "react";
 import { useUser } from "../contexts/UserContext";
 import { updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import { auth } from "../firebase/config";
+import { useState } from "react";
 
 const ChangePassword = () => {
   const user = useUser();
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const email = user.email;
 
   const onSubmit = async (event) => {
     event.preventDefault();

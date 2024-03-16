@@ -1,5 +1,5 @@
-import React from "react";
 import updateRecord from "../services/db/updateRecord";
+import PropTypes from "prop-types";
 
 const Finish = (props) => {
   const { amITaker } = props;
@@ -23,3 +23,8 @@ const Finish = (props) => {
 };
 
 export default Finish;
+
+Finish.propTypes = {
+  amITaker: PropTypes.bool.isRequired,
+  book: PropTypes.object.isRequired,
+}

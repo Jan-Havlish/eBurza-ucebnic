@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   PiNumberCircleOne,
   PiNumberCircleTwo,
@@ -11,10 +11,11 @@ import AgreeOnPlaceAndTime from "./AgreeOnPlaceAndTime";
 import { useNotification } from "../contexts/NotificationContext";
 import Finish from "./Finish";
 
+import PropTypes from "prop-types";
+
 const CommunicationWindow = (props) => {
   const { book } = props;
   const {
-    ownerName,
     ownerEmail,
     priceRangeFrom,
     priceRangeTo,
@@ -70,7 +71,7 @@ const CommunicationWindow = (props) => {
         <div className="mt-6">
           <h3>Komunikace</h3>
           <br />
-          {book.shoppingState <= 3 && (
+          {((book.shoppingState < 3) && (userEmail === takerEmail) ) && (
             <button
               className="bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded"
               onClick={handleLostInterest}
@@ -128,6 +129,7 @@ const CommunicationWindow = (props) => {
       )}
       {!taker && (
         <div className="mt-6">
+          {(userEmail !== ownerEmail) &&
           <button
             className="bg-agBlue hover:bg-agBlue/60 text-white font-bold py-2 px-4 rounded"
             onClick={() =>
@@ -148,6 +150,7 @@ const CommunicationWindow = (props) => {
           >
             Máte zájem o knihu? A chcete se domluvit s prodejcem?
           </button>
+          }
         </div>
       )}
 
@@ -160,3 +163,9 @@ const CommunicationWindow = (props) => {
 };
 
 export default CommunicationWindow;
+
+CommunicationWindow.propTypes = {
+  book: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+}

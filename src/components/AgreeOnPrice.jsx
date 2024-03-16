@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import updateRecord from "../services/db/updateRecord";
 import { useNotification } from "../contexts/NotificationContext";
+import PropTypes from "prop-types";
 
 const AgreeOnPrice = (props) => {
   const { priceRangeFrom, priceRangeTo } = props;
-  const [suggestedPrice, setSuggestedPrice] = useState(
-    (parseInt(priceRangeFrom) + parseInt(priceRangeTo)) / 2
-  );
+  const [suggestedPrice, setSuggestedPrice] = useState(20);
+
+  useEffect(() => {
+    setSuggestedPrice(Math.floor((parseFloat(priceRangeFrom) + parseFloat(priceRangeTo)) / 2));
+    console.log(priceRangeFrom, priceRangeTo, (priceRangeFrom + priceRangeTo) / 2, "priceRangeFrom, priceRangeTo");
+  }, [priceRangeFrom, priceRangeTo]);
 
   const { setNotification, setNotificationType } = useNotification();
 
@@ -44,9 +48,7 @@ const AgreeOnPrice = (props) => {
     console.log("updated");
   };
 
-  useEffect(() => {
-    setSuggestedPrice(props.book.suggestedPrice);
-  }, [props.book]);
+ 
 
   console.log(props.book);
 
@@ -80,16 +82,17 @@ const AgreeOnPrice = (props) => {
             props.book.waitingForResponseFrom === "owner" ? "opacity-50" : ""
           }
         >
-          <h2>Navrhujete cenu: {suggestedPrice} Kč</h2>
+          <h2>Navrhujete cenu:</h2>
           <form id="range" onSubmit={handleSubmit}>
             <label htmlFor="rangeChooser" className="sr-only">Rozsah cen: {priceRangeFrom} - {priceRangeTo} Kč</label>
             <input
               id="rangeChooser"
-              type="range"
+              type="number"
               min={priceRangeFrom}
               max={priceRangeTo}
               value={suggestedPrice}
               onChange={(e) => setSuggestedPrice(e.target.value)}
+              className="text-agBlue"
             />
             <button
             type="submit"
@@ -105,3 +108,11 @@ const AgreeOnPrice = (props) => {
 };
 
 export default AgreeOnPrice;
+
+AgreeOnPrice.propTypes = {
+  book: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  priceRangeFrom: PropTypes.any.isRequired,
+  priceRangeTo: PropTypes.any.isRequired,  
+}

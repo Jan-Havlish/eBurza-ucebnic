@@ -1,8 +1,8 @@
-import useQueryBookRecords from "./useQueryBookRecords";
+import queryBookRecords from "./queryBookRecords";
 
 const downloadMyActivity = async (userEmail) => {
-  const ownerBooks = await useQueryBookRecords("ownerEmail", [userEmail]);
-  const takerBooks = await useQueryBookRecords("takerEmail", [userEmail]);
+  const ownerBooks = await queryBookRecords("ownerEmail", [userEmail]);
+  const takerBooks = await queryBookRecords("takerEmail", [userEmail]);
 
   return {
     ownerBooks,

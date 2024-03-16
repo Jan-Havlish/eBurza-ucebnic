@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
 import { Link } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
@@ -49,3 +51,16 @@ const OneBook = (props) => {
 };
 
 export default OneBook;
+
+OneBook.propTypes = {
+  title: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+  priceRangeFrom: PropTypes.any.isRequired,
+  priceRangeTo: PropTypes.any.isRequired,
+  image: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  shoppingState: PropTypes.number.isRequired,
+  takerEmail: PropTypes.string.isRequired,
+  ownerEmail: PropTypes.string.isRequired,
+  taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+}

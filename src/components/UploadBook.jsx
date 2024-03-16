@@ -126,10 +126,11 @@ const UploadBook = () => {
             <input
               id="fotografie"
               type="file"
+              className="text-zinc-300"
               onChange={(e) => setSelectedFile(e.target.files[0])}
             />{" "}
             <br />
-            <button type="submit">Nahrát</button>
+            <button className="red-button" type="submit">Nahrát</button>
           </form>
       )}
     </>

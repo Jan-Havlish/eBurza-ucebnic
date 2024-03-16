@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useQueryBookRecords from "../services/db/useQueryBookRecords";
+import queryBookRecords from "../services/db/queryBookRecords";
 import OneBook from "./OneBook";
 
 const MyBooksAndInterests = (props) => {
@@ -10,10 +10,10 @@ const MyBooksAndInterests = (props) => {
   console.log(userEmail);
   useEffect(() => {
     const fetchBooks = async () => {
-      const books = await useQueryBookRecords("ownerEmail", [userEmail]);
+      const books = await queryBookRecords("ownerEmail", [userEmail]);
       setMyBooks(books);
 
-      const interests = await useQueryBookRecords("takerEmail", [userEmail]);
+      const interests = await queryBookRecords("takerEmail", [userEmail]);
       setMyInterests(interests);
     };
     fetchBooks();

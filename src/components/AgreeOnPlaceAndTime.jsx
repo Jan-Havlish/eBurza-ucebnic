@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import updateRecord from "../services/db/updateRecord";
 import { vydejniMista, vydejniCasy } from "../data/vydejniMistaACasy";
 import ChoosingBarFromArray from "./ChoosingBarFromArray";
 import { useNotification } from "../contexts/NotificationContext";
+
+import PropTypes from "prop-types";
 
 const AgreeOnPlaceAndTime = (props) => {
   const { book, user } = props;
@@ -19,7 +21,7 @@ const AgreeOnPlaceAndTime = (props) => {
   console.log(book.handover.place, place);
   const [time, setTime] = useState(vydejniCasy[0]);
 
-  const handleSend = async (option) => {
+  const handleSend = async () => {
     if (book.shoppingState !== 2) {
       return;
     }
@@ -122,8 +124,8 @@ const AgreeOnPlaceAndTime = (props) => {
         <div
           className={
             book.waitingForResponseFrom === "owner"
-              ? "opacity-50"
-              : "opacity-100"
+              ? "opacity-50 flex flex-col"
+              : "opacity-100 flex flex-col"
           }
         >
           {!book.handover.placeAgree && (
@@ -132,7 +134,7 @@ const AgreeOnPlaceAndTime = (props) => {
           {!book.handover.timeAgree && (
             <ChoosingBarFromArray options={vydejniCasy} setResult={setTime} label="b" />
           )}
-          <button onClick={handleSend} className="">
+          <button onClick={handleSend} className="red-button ">
             Navrhnout
           </button>
         </div>
@@ -176,3 +178,9 @@ const AgreeOnPlaceAndTime = (props) => {
 };
 
 export default AgreeOnPlaceAndTime;
+
+AgreeOnPlaceAndTime.propTypes = {
+  book: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+}
