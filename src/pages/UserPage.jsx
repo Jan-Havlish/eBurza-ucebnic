@@ -11,12 +11,14 @@ import {
 import ButtonDownloadJSON from "../components/ButtonDownloadJSON";
 import MyBooksAndInterests from "../components/MyBooksAndInterests";
 import { useNotification } from "../contexts/NotificationContext";
+import DeleteAccount from "../components/DeleteAccount";
 
 const UserPage = () => {
   const user = useUser();
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [myActivity, setMyActivity] = useState({});
   const [showMyActivity, setShowMyActivity] = useState(false);
+  const [showDeleteAccount, setShowDeleteAccount] = useState(false);
   const { setNotification, setNotificationType } = useNotification();
 
   useEffect(() => {
@@ -29,12 +31,12 @@ const UserPage = () => {
   }, [showMyActivity]);
 
   return (
-    <>
+    <div className="flex flex-col items-center min-h-screen columns-2">
       <div className="card">
         {!user ? (
           <NeedToLogin />
         ) : (
-          <div>
+          <div className="card">
             <button className="red-button mr-12">
               <Link to="/logout" className="text-white no-underline">
                 Odhlásit se
@@ -73,11 +75,18 @@ const UserPage = () => {
                 <ButtonDownloadJSON inputObj={myActivity} />
               </div>
             )}
+
+            <button className="red-button" onClick={() => setShowDeleteAccount(!showDeleteAccount)}>
+              Smazat účet!
+            </button>
+            {showDeleteAccount && <DeleteAccount />}
           </div>
         )}
       </div>
-      {user ? <MyBooksAndInterests userEmail={user.email} /> : null}
-    </>
+      <div className="border-red-300 rounded-xl border-2">
+        {user ? <MyBooksAndInterests userEmail={user.email} /> : null}
+      </div>
+    </ div>
   );
 };
 
