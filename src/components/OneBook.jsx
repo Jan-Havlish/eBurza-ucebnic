@@ -30,7 +30,7 @@ const OneBook = (props) => {
       <h1>{props.title}</h1>
       <h2>{!props.taker ? "Zatím bez zájemce" : "Zájemce, ještě neujednáno"} </h2>
       {console.log(taker)}
-      {console.log((!taker) ? "Zatím bez zájemce" : "Zájemce, ještě neujednáno")}
+      {console.log((!taker) ? `Zatím bez zájemce ${props.title}` : "Zájemce, ještě neujednáno")}
       <p>{props.owner}</p>
       <p>
         {props.priceRangeFrom} - {props.priceRangeTo}

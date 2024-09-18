@@ -24,7 +24,9 @@ const SchoolBooks = () => {
       ], true);
 
       console.log(books, "books");
-      setBooks(books);
+      const avilableBooks = books.filter((book) => book.stillOnSale);
+      console.log(avilableBooks, "avilableBooks", ", all books", books);
+      setBooks(avilableBooks);
     };
     fetchBooks();
   }, [choosedCategory]);
@@ -32,7 +34,7 @@ const SchoolBooks = () => {
   console.log(books);
 
   return (
-    <div className="">
+    <>
       <div className="card">
         <ChoosingBarFromArray
           options={ucebniceNames}
@@ -55,7 +57,7 @@ const SchoolBooks = () => {
           />
         ))}
       </div>}
-    </div>
+    </>
   );
 };
 

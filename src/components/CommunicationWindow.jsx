@@ -154,9 +154,9 @@ const CommunicationWindow = (props) => {
         </div>
       )}
 
-      {((userEmail !== takerEmail)  && (userEmail !== (ownerEmail || (takerEmail)))) && (
+      {(taker &&((userEmail !== takerEmail)  || (userEmail !== ownerEmail))) ? (
         <h3>Učebnice má aktuálně zájemce.</h3>
-      )}
+      ) : (<h3>Učebnice nemá zájemce.</h3>)}
     </div>
 
   );
@@ -166,6 +166,6 @@ export default CommunicationWindow;
 
 CommunicationWindow.propTypes = {
   book: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 }
