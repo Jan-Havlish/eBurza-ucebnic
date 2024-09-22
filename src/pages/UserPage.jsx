@@ -12,6 +12,7 @@ import ButtonDownloadJSON from "../components/ButtonDownloadJSON";
 import MyBooksAndInterests from "../components/MyBooksAndInterests";
 import { useNotification } from "../contexts/NotificationContext";
 import DeleteAccount from "../components/DeleteAccount";
+import SetupNotification from "../components/SetupNotifications";
 
 const UserPage = () => {
   const user = useUser();
@@ -80,6 +81,7 @@ const UserPage = () => {
               Smazat účet!
             </button>
             {showDeleteAccount && <DeleteAccount />}
+            <SetupNotification />
           </div>
         )}
       </div>
