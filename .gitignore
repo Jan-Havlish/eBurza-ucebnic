@@ -17,6 +17,8 @@ firebase.json
 .firebase
 
 src/data/rules.md
+public/firebase-messaging-sw.js
+public/fb_config.js
 
 # Editor directories and files
 .vscode/*

@@ -1,19 +1,26 @@
 const ucebniceNames = [
+  // Jazykové předměty
   "Angličtina",
-  "Biologie",
-  "Chemie",
   "Čeština",
-  "Dějepis",
-  "Francouština",
-  "Fyzika",
+  "Francouzština",
   "Latina",
-  "Matematika",
   "Němčina",
-  "Ostatní učebnice",
   "Ruština",
   "Španělština",
-  "Zeměpis",
+
+  // Přírodovědné předměty
+  "Biologie",
+  "Chemie",
+  "Fyzika",
+  "Matematika",
+
+  // Společenskovědní předměty
+  "Dějepis",
   "Základy společenských věd",
+  "Zeměpis",
+
+  // Ostatní
+  "Ostatní učebnice",
 ];
 
 export default ucebniceNames;

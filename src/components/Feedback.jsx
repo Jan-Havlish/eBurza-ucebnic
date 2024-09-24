@@ -44,7 +44,7 @@ const Feedback = () => {
 <input type="submit" value="Odeslat" className="blue-button mt-4"/>
                 </form>
             </dialog>
-            <button className="fixed bottom-5 right-5 bg-white rounded-lg shadow-xl shadow-agBlue p-4" onClick={() => setShowCard(!showCard)}>Zpětná vazba / Chyba</button>
+            <button className={"fixed bottom-5 right-5 text-white text-l font-bold rounded-lg shadow-xl shadow-agBlue p-4" + (showCard ? " bg-agRed" : " bg-agBlue")} onClick={() => setShowCard(!showCard)}>Zpětná vazba / Chyba</button>
         </div>
     );
 };

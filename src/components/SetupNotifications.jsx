@@ -15,6 +15,7 @@ const SetupNotification = () => {
           if (permission === "granted") {
             console.log("Notification permission granted.");
             getToken(messaging, { vapidKey: public_vapid_key }).then((currentToken) => {
+              console.log("currentToken", currentToken)
               if (currentToken) {
                 console.log("current token for client: ", currentToken)
                 // Send the token to your server and update the UI if necessary
@@ -40,7 +41,7 @@ const SetupNotification = () => {
       });
     }
 
-    return <button className="blue-button" onClick={setupNotification}>
+    return <button className="blue-button disabled:opacity-25" disabled onClick={setupNotification}>
     Povolit notifikace
   </button>
 }
