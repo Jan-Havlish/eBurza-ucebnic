@@ -20,6 +20,7 @@ if ("serviceWorker" in navigator) {
       }
     );
   }
+  {/*
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/firebase-messaging-sw.js')
       .then(function(registration) {
@@ -28,6 +29,7 @@ if ("serviceWorker" in navigator) {
         console.error('Service Worker registration failed:', error);
       });
   }
+*/}
   
 class OfflineIndicator extends React.Component {
   constructor(props) {

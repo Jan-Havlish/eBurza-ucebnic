@@ -1,49 +1,55 @@
-import { messaging, public_vapid_key } from "../firebase/config";
-import { getToken } from "firebase/messaging";
-import writeRecord from "../services/db/writeRecord"
 import { useUser } from "../contexts/UserContext";
 import { useNotification } from "../contexts/NotificationContext";
+import { useState, useEffect } from "react";
+import { projectFirestore } from "../firebase/config";
+import { doc, setDoc, getDoc } from "firebase/firestore"; 
 
 const SetupNotification = () => {
     const user = useUser();
+    const [notifications, setNotifications] = useState(false);
     const { setNotification, setNotificationType } = useNotification();
-    
-    if (!user) {return "pls log in"}
-// https://www.youtube.com/watch?v=P51dI2y7QHA&t=2s
-    const setupNotification = () => {
-        Notification.requestPermission().then((permission) => {
-          if (permission === "granted") {
-            console.log("Notification permission granted.");
-            getToken(messaging, { vapidKey: public_vapid_key }).then((currentToken) => {
-              console.log("currentToken", currentToken)
-              if (currentToken) {
-                console.log("current token for client: ", currentToken)
-                // Send the token to your server and update the UI if necessary
-                // ...
-                writeRecord("notifications", {
-                  userEmail: user.email,
-                  token: currentToken,
-                  createdAt: new Date().toISOString()
-                }, setNotification, setNotificationType)
-              } else {
-                // Show permission request UI
-                console.log('No registration token available. Request permission to generate one.');
-                // ...
-              }
-            }).catch((err) => {
-              console.log('An error occurred while retrieving token. ', err);
-              // ...
-            });
-            
-          }
-      }).catch((err) => {
-        console.log('Unable to get permission to notify.', err);
-      });
+
+    const hasAllowedNotifications = async () => {
+        const docRef = doc(projectFirestore, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return docSnap.data().notifications;
+        }
+        return false;
     }
 
-    return <button className="blue-button disabled:opacity-25" disabled onClick={setupNotification}>
-    Povolit notifikace
+    useEffect(() => {
+        hasAllowedNotifications().then((data) => {
+            setNotifications(data);
+        })
+    }, [])
+
+    if (!user) {return "pls log in"}
+
+    const setupNotification = async () => {
+        await setDoc(doc(projectFirestore, "users", user.email), {
+            notifications: true
+        }).then(() => {
+            setNotification("Notifikace byly povoleny");
+            setNotificationType("success");
+            setNotifications(true);
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
+            setNotification("Chyba při povolení notifikací, " + error);
+            setNotificationType("error");
+        })          
+    }
+
+    const removeNotification = async () => {
+        await setDoc(doc(projectFirestore, "users", user.email), {
+            notifications: false
+        })
+      }
+
+    return <><button disabled className="blue-button disabled:opacity-25" onClick={notifications ? removeNotification : setupNotification}>
+    {!notifications ? "Povolit notifikace" : "Zrušit notifikace"}
   </button>
+  </>
 }
 
 

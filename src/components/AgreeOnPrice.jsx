@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import updateRecord from "../services/db/updateRecord";
 import { useNotification } from "../contexts/NotificationContext";
 import PropTypes from "prop-types";
+import sendNotification from "../services/notifications/sendNotification";
 
 const AgreeOnPrice = (props) => {
   const { priceRangeFrom, priceRangeTo } = props;
@@ -28,7 +29,18 @@ const AgreeOnPrice = (props) => {
       suggestedPrice,
       waitingForResponseFrom: "owner",
     }, setNotification, setNotificationType);
-    console.log("updated");
+
+    // Send notification to the owner or taker
+    await sendNotification({
+      data: {
+        bookTitle: props.book.title,
+        bookUrl: `https://eburzaucebnicagkm.web.app/ucebnice/${props.book.BookID}`,
+        email: props.book.ownerEmail === props.user.email ? props.book.takerEmail : props.book.ownerEmail,
+        isOwner: props.book.ownerEmail !== props.user.email,
+      },
+    });
+
+    console.log("updated and notification sent");
   };
 
   const handleAgree = async (option) => {
@@ -45,10 +57,21 @@ const AgreeOnPrice = (props) => {
       priceAgree: option,
       shoppingState: option ? 2 : 1,
     }, setNotification, setNotificationType);
-    console.log("updated");
+
+    // Send notification to the owner or taker
+    await sendNotification({
+      data: {
+        bookTitle: props.book.title,
+        bookUrl: `https://eburzaucebnicagkm.web.app/ucebnice/${props.book.BookID}`,
+        email: props.book.ownerEmail === props.user.email ? props.book.takerEmail : props.book.ownerEmail,
+        isOwner: props.book.ownerEmail !== props.user.email,
+      },
+    });
+
+    console.log("updated and notification sent");
   };
 
- 
+
 
   console.log(props.book);
 
@@ -95,7 +118,7 @@ const AgreeOnPrice = (props) => {
               className="text-agBlue"
             />
             <button
-            type="submit"
+              type="submit"
               className="bg-agBlue hover:bg-agBlue/60 text-white font-bold py-2 px-4 rounded"
             >
               Navrhnout
@@ -114,5 +137,5 @@ AgreeOnPrice.propTypes = {
   user: PropTypes.object.isRequired,
   taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   priceRangeFrom: PropTypes.any.isRequired,
-  priceRangeTo: PropTypes.any.isRequired,  
+  priceRangeTo: PropTypes.any.isRequired,
 }

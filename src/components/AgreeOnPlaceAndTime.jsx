@@ -3,6 +3,7 @@ import updateRecord from "../services/db/updateRecord";
 import { vydejniMista, vydejniCasy } from "../data/vydejniMistaACasy";
 import ChoosingBarFromArray from "./ChoosingBarFromArray";
 import { useNotification } from "../contexts/NotificationContext";
+import sendNotification from "../services/notifications/sendNotification";
 
 import PropTypes from "prop-types";
 
@@ -54,7 +55,18 @@ const AgreeOnPlaceAndTime = (props) => {
       setNotification,
       setNotificationType
     );
-    console.log("updated");
+    // Send notification to the owner or taker
+    await sendNotification({
+      data: {
+        bookTitle: book.title,
+        bookUrl: `https://eburzaucebnicagkm.web.app/ucebnice/${book.BookID}`,
+        email: book.ownerEmail === user.email ? book.takerEmail : book.ownerEmail,
+        isOwner: book.ownerEmail !== user.email,
+      },
+    });
+
+    console.log("updated and notification sent");
+
   };
 
   const handleDisagreement = async (option) => {
@@ -106,7 +118,19 @@ const AgreeOnPlaceAndTime = (props) => {
       setNotification,
       setNotificationType
     );
-    console.log("updated");
+
+
+    // Send notification to the owner or taker
+    await sendNotification({
+      data: {
+        bookTitle: book.title,
+        bookUrl: `https://eburzaucebnicagkm.web.app/ucebnice/${book.BookID}`,
+        email: book.ownerEmail === user.email ? book.takerEmail : book.ownerEmail,
+        isOwner: book.ownerEmail !== user.email,
+      },
+    });
+
+    console.log("updated and notification sent");
   };
   return (
     <div>
