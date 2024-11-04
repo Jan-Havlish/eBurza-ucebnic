@@ -41,6 +41,8 @@ const UploadBook = () => {
     console.log("useEffect", pictureOfBook);
     if (!pictureOfBook) return;
     const book = {
+      useMessages: false,
+      messages:[{}],
       bookCategory,
       ownerName: displayName,
       ownerEmail: email,
