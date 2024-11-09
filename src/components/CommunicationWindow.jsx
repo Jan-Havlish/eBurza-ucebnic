@@ -42,8 +42,8 @@ const CommunicationWindow = (props) => {
         interestLost: false,
       },
       setNotification,
-      setNotificationType
-    )
+      setNotificationType,
+    );
     console.log("updated");
   };
 
@@ -70,7 +70,7 @@ const CommunicationWindow = (props) => {
         },
       },
       setNotification,
-      setNotificationType
+      setNotificationType,
     );
     console.log("updated");
   };
@@ -80,61 +80,61 @@ const CommunicationWindow = (props) => {
     }
   }, [user]);
 
+  const isUserInvolved = () => {
+    return userEmail === (ownerEmail || takerEmail);
+  };
+
   return (
-    <div className="CommunicationWindow">
+    <div className="CommunicationWindow w-full">
       {book.ownerEmail === userEmail && book.interestLost && (
         <h1 className="text-red-600">
           Předchozí zájemce ztratil zájem o knihu.
         </h1>
       )}
       {(ownerEmail === userEmail || takerEmail === userEmail) && taker && (
-        <div className="mt-6">
-          <h3>Komunikace</h3>
-          <h4>Aktuální zájemce: {taker}</h4>
+        <div className="mt-6 flex justify-center flex-col">
+          <h3 className="text-center">Komunikace</h3>
+          {userEmail === ownerEmail && (
+            <h4 className="text-center">Aktuální zájemce: {taker}</h4>
+          )}
           <br />
-
-
-
-          {((book.shoppingState < 3) && (userEmail === takerEmail)) && (
+          {book.shoppingState < 3 && userEmail === takerEmail && (
             <button
-              className="bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded"
+              className="bg-agRed hover:bg-agRed/60 text-white font-bold py-2 px-4 rounded m-2"
               onClick={handleLostInterest}
             >
               Ztratit zájem o knihu
             </button>
           )}
-          ---
-          <MessageWindow book={book}/>
-          <ThreeQuestions
-            priceRangeFrom={priceRangeFrom}
-            priceRangeTo={priceRangeTo}
-            book={book}
-            user={user}
-            takerEmail={takerEmail}
-            userEmail={userEmail}
-            shoppingState={book.shoppingState}
-          />
-          --
+          <div className="flex flex-col xl:flex-row">
+            <MessageWindow book={book} />
+            <ThreeQuestions
+              priceRangeFrom={priceRangeFrom}
+              priceRangeTo={priceRangeTo}
+              book={book}
+              user={user}
+              takerEmail={takerEmail}
+              userEmail={userEmail}
+              shoppingState={book.shoppingState}
+            />
+          </div>
         </div>
       )}
       {!taker && (
         <div className="mt-6">
-          {(userEmail !== ownerEmail) &&
+          {userEmail !== ownerEmail && (
             <button
               className="bg-agBlue hover:bg-agBlue/60 text-white font-bold py-2 px-4 rounded"
               onClick={addTaker}
             >
               Máte zájem o knihu? A chcete se domluvit s prodejcem?
             </button>
-          }
+          )}
         </div>
       )}
 
-      {(taker && ((userEmail !== takerEmail) || (userEmail !== ownerEmail))) ? (
-        <h3>Učebnice má aktuálně zájemce.</h3>
-      ) : (<h3>Učebnice nemá zájemce.</h3>)}
+      {!isUserInvolved() && taker && <h3>Učebnice má aktuálně zájemce.</h3>}
     </div>
-
   );
 };
 
@@ -144,4 +144,4 @@ CommunicationWindow.propTypes = {
   book: PropTypes.object.isRequired,
   user: PropTypes.object,
   taker: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-}
+};

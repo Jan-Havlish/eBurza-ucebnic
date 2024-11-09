@@ -53,7 +53,7 @@ const Login = () => {
             <h2 className="text-base font-semibold leading-7">Přihlášení</h2>
           </div>
         </div>
-        
+
         <div className="sm:col-span-4 mt-2">
           <label htmlFor="email" className="sr-only">
             E-mailová adresa
@@ -110,7 +110,9 @@ const Login = () => {
           <p>
             nebo zresetovat heslo{" "}
             <a
-              onClick={() => resetPassword(email)}
+              onClick={() =>
+                resetPassword(email, setNotification, setNotificationType)
+              }
               className="cursor-pointer hover:text-sky-300 text-agRed"
             >
               zde

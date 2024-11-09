@@ -1,4 +1,5 @@
 import { auth } from "../../firebase/config";
+
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -19,7 +20,7 @@ export const registerUser = async (
   password,
   displayName,
   setNotification,
-  setNotificationType
+  setNotificationType,
 ) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -30,7 +31,7 @@ export const registerUser = async (
         .then(() => {
           console.log("User profile updated successfully");
           setNotification(
-            "Registrace proběhla v pořádku, nyní si můžete dobrovolně ověřit e-mail v nastavení účtu"
+            "Registrace proběhla v pořádku, nyní si můžete dobrovolně ověřit e-mail v nastavení účtu",
           );
           setNotificationType("success");
           // ...
@@ -69,7 +70,12 @@ export const verifyUserEmail = (user, setNotification, setNotificationType) => {
     });
 };
 
-export const resetPassword = async (email) => {
+export const resetPassword = async (
+  email,
+  setNotification,
+  setNotificationType,
+) => {
+  console.log(email, "reset?");
   await sendPasswordResetEmail(auth, email)
     .then(() => {
       // Password reset email sent!

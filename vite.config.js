@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import { VitePWA } from 'vite-plugin-pwa';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), 
+  plugins: [
+    react(),
     {
       name: "configure-response-headers",
       configureServer: (server) => {
@@ -16,10 +17,11 @@ export default defineConfig({
       },
     },
     VitePWA({
-    manifest: "public/manifest.json",
-    registerType: 'module',
-      injectRegister: 'inline',
+      manifest: "public/manifest.json",
+      registerType: "module",
+      injectRegister: "inline",
       injectManifest: true,
-      swSrc: 'public/sw.js',
-  })],}
-    )
+      swSrc: "public/sw.js",
+    }),
+  ],
+});
