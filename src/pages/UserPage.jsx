@@ -51,7 +51,9 @@ const UserPage = () => {
             </button>
             {user.emailVerified ? null : (
               <button
-                onClick={() => verifyUserEmail(user, setNotification, setNotificationType)}
+                onClick={() =>
+                  verifyUserEmail(user, setNotification, setNotificationType)
+                }
                 className="blue-button"
               >
                 {" "}
@@ -77,10 +79,16 @@ const UserPage = () => {
               </div>
             )}
 
-            <button className="red-button" onClick={() => setShowDeleteAccount(!showDeleteAccount)}>
+            <button
+              className="red-button"
+              onClick={() => setShowDeleteAccount(!showDeleteAccount)}
+            >
               Smazat účet!
             </button>
             {showDeleteAccount && <DeleteAccount />}
+            <em className="text-zinc-200">
+              Dobrovolné, případné chyby nám nahlašte. Beta funkce.
+            </em>
             <SetupNotification />
           </div>
         )}
@@ -88,7 +96,7 @@ const UserPage = () => {
       <div className="border-red-300 rounded-xl border-2">
         {user ? <MyBooksAndInterests userEmail={user.email} /> : null}
       </div>
-    </ div>
+    </div>
   );
 };
 
